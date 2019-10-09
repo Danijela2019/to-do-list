@@ -15,16 +15,27 @@ The basic functionalities of the application are:
 
 
 # User Manual
-When application is started, main menu is displayed.
->> Welcome to ToDoLy
->> You have X tasks todo and Y tasks are done!
->> Pick an option:
->> (1) Show Task List (by date or project)
->> (2) Add New Task
->> (3) Edit Task (update, mark as done, remove)
->> (4) Save and Quit
->> 
-To add a new task, type 2 and press Enter. 
-- Type task title and press Enter.
-- Type due date and press Enter.
-- Select project id from Project list and press Enter.
+
+Summary:
+A. Overview
+B. Proview of the task list 
+C. Add a new task
+D. Edit task
+E. Save a task
+
+A. Overview
+When you start the application a  display of the main menu is shown with numbered options. You have an overview of all the tasks that are done and how many are left to do.
+
+B. Proview of the task list 
+By typing option No.1 a list of all tasks is displayed that can be sorted both by date and project.
+
+C. Add a new task
+By typing option No.2 a new task window will popup…
+
+
+D. Edit task
+By typing option No.3 an option to update, remove and mark as done pops up…
+
+E. Save a task
+By typing option No.4 the task can be saved and return to the main menu.
+
