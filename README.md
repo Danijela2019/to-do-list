@@ -1,21 +1,18 @@
 # To Do List
 
-The application allows a user to create new tasks, assign them a title and due date, and choose a project for that task to belong to. User can also edit, mark as done or remove tasks. User can also quit and save the current task list to file, and then restart the application with the former state restored.
+A simple todo list application written in java. The todo list allows users to keep track of tasks at hand and classify them into projects where these tasks belong to. 
+ User can also quit and save the current task list to file, and then restart the application with the former state restored.
+It is very simple to use, intuitive text based user interface that can be manipulated via the command line. 
+The basic functionalities of the application are:
+
+* Display a collection of tasks that can be sorted both by date and project 
+* Ability to manipulate with tasks: add, edit, mark as done and remove tasks
+* Load and save tasklist to file
+
+
 
 # Class Diagram
-______________
-|            |
-|            |
-|            |
-|            |
-______________
 
-______________
-|            |
-|            |
-|            |
-|            |
-______________
 
 # User Manual
 When application is started, main menu is displayed.
