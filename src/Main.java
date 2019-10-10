@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -13,6 +16,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        //Creating an instance of ToDoList task which will be used to store tasks and call methods
+        ToDoList tdl = new ToDoList();
+        //Variable for adding/editing a task title while creating/editing a task
+        String title;
+        // Variable for adding/editing a date in String format by the user when creating/editing a task
+        String dueDateStr;
+        //Variable that stores the converted String date format
+        Date dueDate = null;
+        //Variable for adding/editing the tasks project name
+        String project;
+        //Variable for searching for the ID of a certain task
+
         // Print a welcome message
         System.out.println("*** Welcome to ToDoList ***");
 
@@ -31,12 +46,54 @@ public class Main {
                     break;
                 //second option/choice is creating a new task by entering task name( title) and due date
                 case "2":
-                    System.out.println("Adding new task to the list.....");
+                    System.out.print("Enter Title: ");
+                    title = userInput.nextLine();
+                    // Instructions for the user how to enter the date in the correct format
+                    System.out.print("Enter due date in this format (e.g 2019-09-25): ");
+                    dueDateStr = userInput.nextLine();
+
+                    // Making sure that the user entry is a valid date before continuing to the next step
+                    boolean validDate = false;
+                    while (!validDate) {
+                        validDate = isValidDate(dueDateStr);
+                        // formatting the date from String type to Date type
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        /* Created try/catch statement.
+                        Can be ignored since we make sure the string is in a valid date format before this point */
+                        if (isValidDate(dueDateStr)) {
+                            try {
+                                dueDate = dateFormat.parse(dueDateStr);
+                            } catch (ParseException pe) {
+                            }
+                        }
+                        // creating an option for the user to exit and return to the main menu
+                        else {
+                            System.out.print("Please enter date in a valid format (e.g. 2019-09-25) or (Q) "
+                                    + "to Quit and return to main menu: ");
+                            dueDateStr = userInput.nextLine();
+                        }
+                        if (dueDateStr.equals("Q")) {
+                            break;
+                        }
+                        // exiting the add a new task option in case the user decides not to proceed with the entry
+                    }
+                    if (dueDateStr.equals("Q")) {
+                        break;
+                    }
+                    //Creating the next entry(project name) for the user after he/she enters a valid date format
+                    System.out.print("Enter Project: ");
+                    project = userInput.nextLine();
+
+                    // Adding the newly created task in the ArrayList
+                    tdl.addTask(title, dueDate, project);
+
+                    //System.out.println("To do list has " + tdl.toDoList.size() + " tasks.");
+                    // Returning the user to the main menu again
+                    pressEnterToContinue();
                     break;
                 // Editing a task
                 case "3":
                     System.out.println("Editing task...");
-                    // user enters the task Id in string format
                     break;
                 case "4":
                     System.out.println("Completing task.....");
@@ -68,5 +125,38 @@ public class Main {
         System.out.println("6 - Save and Exit the Program");
         System.out.println("Your choice: ");
     }
+    /**
+     * Checking if the users date entry is in valid format
+     *
+     */
+    private static boolean isValidDate (String datum){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(datum.trim());
+        }
+        catch (ParseException pe) {
+            return false;
+        }
+        catch (NullPointerException pe) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returning the user to the main menu
+     *
+     */
+    private static void pressEnterToContinue() {
+        System.out.println();
+        System.out.println("Press Enter/Return key to continue...");
+        try {
+            System.in.read();
+        }
+        catch(Exception e) {
+        }
+    }
+
 
 }
