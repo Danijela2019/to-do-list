@@ -27,6 +27,7 @@ public class Main {
         //Variable for adding/editing the tasks project name
         String project;
         //Variable for searching for the ID of a certain task
+        String userInputTaskId;
 
         // Print a welcome message
         System.out.println("*** Welcome to ToDoList ***");
@@ -93,7 +94,8 @@ public class Main {
                     break;
                 // Editing a task
                 case "3":
-                    System.out.println("Editing task...");
+                    System.out.println("Please enter the Id number of the task you want to edit");
+                    userInputTaskId = userInput.nextLine();
                     break;
                 case "4":
                     System.out.println("Completing task.....");
