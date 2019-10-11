@@ -20,7 +20,6 @@ public class ToDoList {
     public void addTask(String title, Date dueDate, String project) {
         Task newTask = new Task(getNextTaskId(), title, dueDate, project, "Not Done");
         toDoList.add(newTask);
-        System.out.println("Task successfully added to the list!");
     }
 
     /**
@@ -37,6 +36,26 @@ public class ToDoList {
             }
         }
         return nextId;
+    }
+
+    public boolean markTaskAsDone(int taskId) {
+        Task t = getTaskById(taskId);
+        if (t != null) {
+            t.markAsDone();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private Task getTaskById(int taskId) {
+        for (Task t : toDoList) {
+            if (t.getId() == taskId) {
+                return t;
+            }
+        }
+        return null;
     }
 
 }

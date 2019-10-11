@@ -27,7 +27,8 @@ public class Main {
         //Variable for adding/editing the tasks project name
         String project;
         //Variable for searching for the ID of a certain task
-        String userInputTaskId;
+        String taskIdStr;
+        int taskId;
 
         // Print a welcome message
         System.out.println("*** Welcome to ToDoList ***");
@@ -87,19 +88,34 @@ public class Main {
 
                     // Adding the newly created task in the ArrayList
                     tdl.addTask(title, dueDate, project);
-
+                    System.out.println("Task successfully added to the list!");
                     //System.out.println("To do list has " + tdl.toDoList.size() + " tasks.");
                     // Returning the user to the main menu again
                     pressEnterToContinue();
                     break;
                 // Editing a task
                 case "3":
-                    System.out.println("Please enter the Id number of the task you want to edit");
-                    userInputTaskId = userInput.nextLine();
+                    System.out.println("Please enter the Id number of the task you want to edit: ");
                     break;
                 case "4":
-                    System.out.println("Completing task.....");
-
+                    System.out.println("Please enter the Id number of the task you want to mark as done: ");
+                    boolean success = false;
+                    while (!success) {
+                        taskIdStr = userInput.nextLine();
+                        try {
+                            taskId = Integer.parseInt(taskIdStr);
+                            success = tdl.markTaskAsDone(taskId);
+                        }
+                        catch (NumberFormatException nfe) {
+                            success = false;
+                        }
+                        if (success) {
+                            System.out.println("Task successfully marked as done!");
+                        } else {
+                            System.out.println("Please enter existing task id: ");
+                        }
+                    }
+                    pressEnterToContinue();
                     break;
                 case "5":
                     System.out.println("Removing task form the list......");
