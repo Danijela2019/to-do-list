@@ -57,4 +57,4 @@ A task can be updated, mark as done or removed from the program by chosing the a
 
 By typing option No.4 the task can be saved with all the updates made and return to the main menu.
 
--**********-------------------
+
