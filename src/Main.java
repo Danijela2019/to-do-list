@@ -29,6 +29,7 @@ public class Main {
         //Variable for searching for the ID of a certain task
         String taskIdStr;
         int taskId;
+        boolean success;
 
         // Print a welcome message
         System.out.println("*** Welcome to ToDoList ***");
@@ -99,7 +100,7 @@ public class Main {
                     break;
                 case "4":
                     System.out.println("Please enter the Id number of the task you want to mark as done: ");
-                    boolean success = false;
+                    success = false;
                     while (!success) {
                         taskIdStr = userInput.nextLine();
                         try {
@@ -118,7 +119,27 @@ public class Main {
                     pressEnterToContinue();
                     break;
                 case "5":
-                    System.out.println("Removing task form the list......");
+                    System.out.println("Please enter the Id number of the task you want to remove from list: ");
+                    success = false;
+                    while (!success) {
+                        taskIdStr = userInput.nextLine();
+                        if (taskIdStr.equals("Q")) {
+                            break;
+                        }
+                        try {
+                            taskId = Integer.parseInt(taskIdStr);
+                            success = tdl.removeTask(taskId);
+                        }
+                        catch (NumberFormatException nfe) {
+                            success = false;
+                        }
+                        if (success) {
+                            System.out.println("Task successfully removed!");
+                        } else {
+                            System.out.println("Please enter existing task id or (Q) to Quit and return to main menu: ");
+                        }
+                    }
+                    pressEnterToContinue();
                     break;
                 case "6":
                     System.out.println("Bye bye!");

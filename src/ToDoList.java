@@ -58,4 +58,15 @@ public class ToDoList {
         return null;
     }
 
+    public boolean removeTask(int taskId) {
+        Task t = getTaskById(taskId);
+        if (t != null) {
+            toDoList.remove(t);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
