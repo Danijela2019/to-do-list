@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -160,5 +161,11 @@ public class Task {
      */
     public void markAsDone() {
         this.status = "Done";
+    }
+
+    @Override
+    public String toString() {
+        String dueDateStr = new SimpleDateFormat("yyyy-MM-dd").format(dueDate);
+        return this.id + "|" + this.title + "|" + dueDateStr + "|" + this.project + "|" + this.status;
     }
 }

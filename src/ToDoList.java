@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -66,6 +67,23 @@ public class ToDoList {
         }
         else {
             return false;
+        }
+    }
+
+    public void printTaskList(String sortChoice) {
+        System.out.println("Id|Title|Due Date|Project|Status");
+        sortList(sortChoice);
+        for (Task t : toDoList) {
+            System.out.println(t);
+        }
+    }
+
+    private void sortList(String sortChoice) {
+        if (sortChoice.equals("P")) {
+            toDoList.sort(Comparator.comparing(Task::getProject));
+        }
+        else {
+            toDoList.sort(Comparator.comparing(Task::getDueDate).reversed());
         }
     }
 

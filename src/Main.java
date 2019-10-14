@@ -45,7 +45,17 @@ public class Main {
             switch (choice) {
                 //first option(choice),show the task list
                 case "1":
-                    System.out.println("Showing task list.....");
+                    System.out.print("List tasks by (D)ate or (P)roject?: ");
+                    String printChoice = "X";
+                    while (!printChoice.matches("D|P") ) {
+                        printChoice = userInput.nextLine();
+                        if (printChoice.matches("D|P")) {
+                            break;
+                        }
+                        System.out.print("Please enter a valid choice: (D)ate or (P)roject. ");
+                    }
+                    tdl.printTaskList(printChoice);
+                    pressEnterToContinue();
                     break;
                 //second option/choice is creating a new task by entering task name( title) and due date
                 case "2":
