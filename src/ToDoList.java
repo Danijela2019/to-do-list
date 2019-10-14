@@ -28,7 +28,6 @@ public class ToDoList {
      *
      * @return Next available ID number
      */
-
     private int getNextTaskId() {
         int nextId = 1;
         for (Task t : toDoList) {
@@ -39,6 +38,12 @@ public class ToDoList {
         return nextId;
     }
 
+    /**
+     * Checks for existence of active (not done) task with a certain ID.
+     * If the task is active, changes the status to done.
+     * @param taskId ID number of the task
+     * @return True if the task exists and is successfully updated as done
+     */
     public boolean markTaskAsDone(int taskId) {
         Task t = getTaskById(taskId);
         if (t != null) {
@@ -50,6 +55,11 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Getting a certain task from the to-do list of tasks
+     * @param taskId ID number of the task
+     * @return the task that contains that ID number
+     */
     private Task getTaskById(int taskId) {
         for (Task t : toDoList) {
             if (t.getId() == taskId) {
@@ -59,6 +69,11 @@ public class ToDoList {
         return null;
     }
 
+    /**
+     * Removing a task from the to_do list
+     * @param taskId ID number of the task
+     * @return True if the task exists in the first place and is successfully removed
+     */
     public boolean removeTask(int taskId) {
         Task t = getTaskById(taskId);
         if (t != null) {
@@ -70,6 +85,10 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Prints the task list by project name or date(furthers date on the top/ soonest on the bottom)
+     * @param sortChoice Users choice (D)ate or (P)roject
+     */
     public void printTaskList(String sortChoice) {
         System.out.println("Id|Title|Due Date|Project|Status");
         sortList(sortChoice);
@@ -78,6 +97,10 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Sorts the list by project name or date
+     * @param sortChoice Users choice (D)ate or (P)roject
+     */
     private void sortList(String sortChoice) {
         if (sortChoice.equals("P")) {
             toDoList.sort(Comparator.comparing(Task::getProject));
