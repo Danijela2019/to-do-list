@@ -163,6 +163,10 @@ public class Task {
         this.status = "Done";
     }
 
+    /**
+     * Prints the task as a nice readable text
+     * @return
+     */
     @Override
     public String toString() {
         String dueDateStr = new SimpleDateFormat("yyyy-MM-dd").format(dueDate);

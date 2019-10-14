@@ -43,17 +43,21 @@ public class Main {
             printMenu();
             choice = userInput.nextLine();
             switch (choice) {
-                //first option(choice),show the task list
+                //first option(choice),filter and print the list by date or project
                 case "1":
                     System.out.print("List tasks by (D)ate or (P)roject?: ");
+                   /*Creating a local variable printChoise set to initial value different
+                   from D or P in order to enter the while loop */
                     String printChoice = "X";
                     while (!printChoice.matches("D|P") ) {
                         printChoice = userInput.nextLine();
+                        //making sure that the user enters correct input D or P and exit the while loop
                         if (printChoice.matches("D|P")) {
                             break;
                         }
                         System.out.print("Please enter a valid choice: (D)ate or (P)roject. ");
                     }
+                    //Printing the tasks by (D)ate or (P)roject depending on users choice(printChoice)
                     tdl.printTaskList(printChoice);
                     pressEnterToContinue();
                     break;
@@ -69,7 +73,7 @@ public class Main {
                     boolean validDate = false;
                     while (!validDate) {
                         validDate = isValidDate(dueDateStr);
-                        // formatting the date from String type to Date type
+                        // Formatting the date from String type to Date type
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         /* Created try/catch statement.
                         Can be ignored since we make sure the string is in a valid date format before this point */
@@ -79,7 +83,7 @@ public class Main {
                             } catch (ParseException pe) {
                             }
                         }
-                        // creating an option for the user to exit and return to the main menu
+                        // Creating an option for the user to exit and return to the main menu
                         else {
                             System.out.print("Please enter date in a valid format (e.g. 2019-09-25) or (Q) "
                                     + "to Quit and return to main menu: ");
@@ -88,7 +92,7 @@ public class Main {
                         if (dueDateStr.equals("Q")) {
                             break;
                         }
-                        // exiting the add a new task option in case the user decides not to proceed with the entry
+                        // Exiting the add a new task option in case the user decides not to proceed with the entry
                     }
                     if (dueDateStr.equals("Q")) {
                         break;
@@ -108,8 +112,10 @@ public class Main {
                 case "3":
                     System.out.println("Please enter the Id number of the task you want to edit: ");
                     break;
+                 // Marking a task as done
                 case "4":
                     System.out.println("Please enter the Id number of the task you want to mark as done: ");
+                    // Created a variable that represents the users success to update the task as done
                     success = false;
                     while (!success) {
                         taskIdStr = userInput.nextLine();
@@ -129,7 +135,9 @@ public class Main {
                     pressEnterToContinue();
                     break;
                 case "5":
+                    // Removing a task from the list
                     System.out.println("Please enter the Id number of the task you want to remove from list: ");
+                    // Created a variable that represents the users success to remove a task with a certain ID
                     success = false;
                     while (!success) {
                         taskIdStr = userInput.nextLine();
