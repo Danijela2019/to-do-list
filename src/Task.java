@@ -90,7 +90,6 @@ public class Task {
     }
 
 
-
     /**
      *  Updates the due date of the given task
      *
@@ -99,7 +98,6 @@ public class Task {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-
 
 
     /**
@@ -112,7 +110,6 @@ public class Task {
     }
 
 
-
     /**
      * Updates the tittle/name of the project
      *
@@ -121,25 +118,6 @@ public class Task {
     public void setProject(String project) {
         this.project = project;
     }
-
-    /**
-     *  Access the instance field status
-     *
-     * @return The status of a certain task
-     */
-    public String getStatus() {
-
-        return this.status;
-    }
-
-    /**
-     * Change the status of a certain task
-     *
-     */
-    public void setStatus(String status){
-        this.status = status;
-    }
-
 
     /**
      *  Update the title, due date or project name of a certain task

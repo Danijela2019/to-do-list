@@ -60,7 +60,7 @@ public class ToDoList {
      * @param taskId ID number of the task
      * @return the task that contains that ID number
      */
-    private Task getTaskById(int taskId) {
+    public Task getTaskById(int taskId) {
         for (Task t : toDoList) {
             if (t.getId() == taskId) {
                 return t;
@@ -108,6 +108,21 @@ public class ToDoList {
         else {
             toDoList.sort(Comparator.comparing(Task::getDueDate).reversed());
         }
+    }
+
+    /**
+     * Updates a concrete task
+     * @param taskId The ID of the task
+     * @param title New tittle of the task
+     * @param dueDate New due date of the task
+     * @param project New project of the task
+     */
+    public void updateTask(int taskId, String title, Date dueDate, String project) {
+        Task t = getTaskById(taskId);
+        if (title.isEmpty()) { title = t.getTitle();}
+        if (dueDate == null) { dueDate = t.getDueDate();}
+        if (project.isEmpty()) {project = t.getProject();}
+        t.updateTask(title, dueDate, project);
     }
 
 }
