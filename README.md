@@ -37,7 +37,7 @@ When you start the application a main menu is shown as below:
 >>* Your choice:
 
 
-2. #### Proview of all the tasks that are already created 
+2. #### Preview of all the tasks that are already created 
 
 By typing option No.1 choose how would you like to sort your tasks( by due date or by project)
 

@@ -1,16 +1,20 @@
+package ipproject;
+
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * A class that is a template to create tasks for a simple to-do list.
- * It contains a constructor and get/set methods to access the instance fields from another class.
- * It is a part of larger application that contains the to-do menu and methods for manipulating the to-do list.
+ * It contains a constructor and get/set methods to access the instance fields from other classes.
+ * It contains other methods that need access to the instance fields.
+ * It is a part of larger application "to-do list" that has other classes.
  *
  * @author Danijela Milenkovic
  * @version 07.10.2019
  */
 
-public class Task {
+public class Task implements Serializable {
     // ID number for every task
     private int id;
     // Name/title for every task

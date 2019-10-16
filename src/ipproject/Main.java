@@ -1,12 +1,18 @@
+package ipproject;
+
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 /**
  *  A class that contains the main method.
- *  It used to print and navigate through the todo list option menu.
- * It is a part of a larger todo list application.
+ *  It used to print and navigate through the to-do list option menu.
+ *  It contains methods that are directly used for manipulating with the user data entry.
+ *  It contains methods to save and read an already saved to-do list.
+ *  It is a part of a larger "to-do" list application.
  *
  * @author Danijela Milenkovic
  * @version 09.10.2019
@@ -18,6 +24,7 @@ public class Main {
     public static void main(String[] args) {
         //Creating an instance of ToDoList task which will be used to store tasks and call methods
         ToDoList tdl = new ToDoList();
+        tdl.toDoList = readFromFileIntoList("toDoList");
         //Variable for adding/editing a task title while creating/editing a task
         String title;
         // Variable for adding/editing a date in String format by the user when creating/editing a task
@@ -240,10 +247,13 @@ public class Main {
                     }
                     pressEnterToContinue();
                     break;
-                    // printing a good bye message
                 case "6":
+                    // Saving changes to file and printing a good bye message
+                    saveToFile(tdl.toDoList, "toDoList");
+                    System.out.println();
                     System.out.println("Bye bye!");
                     break;
+                    // in case the user enters an option that is not valid
                 default:
                     System.out.println("Please enter a valid option!");
                     System.out.println();
@@ -284,7 +294,7 @@ public class Main {
     }
 
     /**
-     * Method that asks user to press enter in order to move on with program execution
+     * Asking the user to press enter in order to move on with program execution
      *
      *
      */
@@ -313,6 +323,52 @@ public class Main {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Saves the ArrayList( to-do list) to a file
+     * @param list The ArrayList that is saved it  the file
+     * @param fileName The name of the file where the ArrayList( To-do List) is saved
+     */
+
+    private static void saveToFile(ArrayList list, String fileName) {
+        try
+        {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(list);
+
+            oos.close();
+            fos.close();
+
+            System.out.println("Data saved!");
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Failed to save data!!!");
+        }
+    }
+
+    /**
+     * Reads from the file where the ArrayList( to-do List) is saved and shows the saved list
+     * @param fileName the name of the file where the ArrayList(To-do list) is saved
+     * @return ArrayList( the saved To-do List in that file)
+     */
+    private static ArrayList readFromFileIntoList(String fileName) {
+        ArrayList list = new ArrayList();
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            list = (ArrayList) ois.readObject();
+
+            ois.close();
+            fis.close();
+        } catch (IOException | ClassNotFoundException e) {
+            //ignore, it's OK to return empty list
+        }
+        return list;
     }
 
 
