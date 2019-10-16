@@ -28,11 +28,11 @@ The basic functionalities of the application are:**
 When you start the application a main menu is shown as below: 
 
 >>Pick an option:
->>* 1 - Show Task List (by Date or Project)
+>>* 1 - Show ipproject.Task List (by Date or Project)
 >>* 2 - Add New Tas
->>* 3 - Edit Task
->>* 4 - Mark Task as Done
->>* 5 - Remove Task from Task List
+>>* 3 - Edit ipproject.Task
+>>* 4 - Mark ipproject.Task as Done
+>>* 5 - Remove ipproject.Task from ipproject.Task List
 >>* 6 - Save and Exit the Program
 >>* Your choice:
 

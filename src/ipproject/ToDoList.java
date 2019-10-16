@@ -1,10 +1,15 @@
+package ipproject;
+
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
 /**
- * A class for creating new tasks and storing them in ArrayList.
- * It is a part of a larger application for a todo list.
+ * A class for creating new tasks and manipulating with the task list(To-do list)
+ * Contains methods for manipulating with the tasks(the elements)of the ArrayList(To-do List)
+ * Contains methods for manipulating with the ArrayList( To-do List) as a whole
+ * It is a part of a larger application "to-do list".
  */
 
 public class ToDoList {
@@ -70,7 +75,7 @@ public class ToDoList {
     }
 
     /**
-     * Removing a task from the to_do list
+     * Removing a task from the to-do list
      * @param taskId ID number of the task
      * @return True if the task exists in the first place and is successfully removed
      */
@@ -124,5 +129,6 @@ public class ToDoList {
         if (project.isEmpty()) {project = t.getProject();}
         t.updateTask(title, dueDate, project);
     }
+
 
 }
