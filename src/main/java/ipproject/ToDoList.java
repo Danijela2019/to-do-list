@@ -10,6 +10,8 @@ import java.util.Date;
  * Contains methods for manipulating with the tasks(the elements)of the ArrayList(To-do List)
  * Contains methods for manipulating with the ArrayList( To-do List) as a whole
  * It is a part of a larger application "to-do list".
+ * @author Danijela Milenkovic
+ * @version 2019-10-09
  */
 
 public class ToDoList {

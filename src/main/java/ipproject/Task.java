@@ -11,7 +11,7 @@ import java.util.*;
  * It is a part of larger application "to-do list" that has other classes.
  *
  * @author Danijela Milenkovic
- * @version 07.10.2019
+ * @version 2019-10-07
  */
 
 public class Task implements Serializable {

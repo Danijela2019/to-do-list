@@ -15,7 +15,7 @@ import java.util.Scanner;
  *  It is a part of a larger "to-do" list application.
  *
  * @author Danijela Milenkovic
- * @version 09.10.2019
+ * @version 2019-10-09
  *
  */
 
