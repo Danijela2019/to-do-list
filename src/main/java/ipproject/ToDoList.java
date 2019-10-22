@@ -4,6 +4,7 @@ package ipproject;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 /**
  * A class for creating new tasks and manipulating with the task list(To-do list)
@@ -98,8 +99,8 @@ public class ToDoList {
      */
     public void printTaskList(String sortChoice) {
         System.out.println("Id|Title|Due Date|Project|Status");
-        sortList(sortChoice);
-        for (Task t : toDoList) {
+        ArrayList<Task> sortedList = sortList(sortChoice);
+        for (Task t : sortedList) {
             System.out.println(t);
         }
     }
@@ -108,13 +109,21 @@ public class ToDoList {
      * Sorts the list by project name or date
      * @param sortChoice Users choice (D)ate or (P)roject
      */
-    private void sortList(String sortChoice) {
+    private ArrayList<Task> sortList(String sortChoice) {
+        ArrayList<Task> sortedList = new ArrayList<>();
         if (sortChoice.equals("P")) {
-            toDoList.sort(Comparator.comparing(Task::getProject));
+            //toDoList.sort(Comparator.comparing(Task::getProject));
+            sortedList = (ArrayList<Task>) toDoList.stream()
+                    .sorted(Comparator.comparing(Task::getProject))
+                    .collect(Collectors.toList());
         }
         else {
-            toDoList.sort(Comparator.comparing(Task::getDueDate).reversed());
+            //toDoList.sort(Comparator.comparing(Task::getDueDate).reversed());
+            sortedList = (ArrayList<Task>) toDoList.stream()
+                    .sorted(Comparator.comparing(Task::getDueDate).reversed())
+                    .collect(Collectors.toList());
         }
+        return sortedList;
     }
 
     /**
