@@ -43,6 +43,9 @@ public class Task implements Serializable {
         this.status = status;
     }
 
+    public Task() {
+    }
+
     /**
      * Access the instance field id
      *
@@ -59,6 +62,7 @@ public class Task implements Serializable {
      * @param id The new ID of the task
      */
     public void setId(int id) {
+        this.id = id;
     }
 
 
@@ -121,6 +125,14 @@ public class Task implements Serializable {
      */
     public void setProject(String project) {
         this.project = project;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**

@@ -260,6 +260,10 @@ public class Main {
             }
         }
     }
+
+    //method for counting
+    //tasklist.filter(x -> x.isDone()).count()
+
     /**
      * Showing the menu options to the user
      *
@@ -278,7 +282,7 @@ public class Main {
      * Checking if the users date entry is in valid format
      *
      */
-    private static boolean isValidDate (String date){
+    public static boolean isValidDate (String date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         try {
@@ -314,7 +318,7 @@ public class Main {
      * @return True if the value is int type
      */
 
-    private static boolean isInteger(String s) {
+    public static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
         } catch(NumberFormatException nfe) {
