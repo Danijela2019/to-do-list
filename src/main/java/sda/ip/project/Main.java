@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 
 import java.io.*;
 import java.text.ParseException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
+ /**
  *  A class that contains the main method.
  *  It used to print and navigate through the to-do list option menu.
  *  It contains methods that are directly used for manipulating with the user data entry.
@@ -41,16 +41,18 @@ public class Main {
         boolean success;
         // Variable that confirms if the user entered a valid date format
         boolean validDate;
-
         // Print a welcome message
         System.out.println("*** Welcome to ToDoList ***");
-
         // Create a scanner so we can read the command-line input
         Scanner userInput = new Scanner(System.in);
 
         // Manipulating the task menu with the user input through the choice variable.Options are from 1 to 6
         String choice = "0";
         while (!choice.equals("6")) {
+            // getting the number of complete and incomplete tasks
+            int completeTasks = tdl.getNumberOfCompleteTasks();
+            int incompleteTasks = tdl.getNumberOfIncompleteTasks();
+            printNoOfCompleteIncompleteTasks(completeTasks, incompleteTasks);
             printMenu();
             choice = userInput.nextLine();
             switch (choice) {
@@ -91,7 +93,7 @@ public class Main {
                         if (isValidDate(dueDateStr)) {
                             try {
                                 dueDate = dateFormat.parse(dueDateStr);
-                            } catch (ParseException pe) {
+                            } catch (ParseException ignored) {
                             }
                         }
                         // Creating an option for the user to exit and return to the main menu
@@ -165,7 +167,7 @@ public class Main {
                         if (isValidDate(dueDateStr)) {
                             try {
                                 dueDate = dateFormat.parse(dueDateStr);
-                            } catch (ParseException pe) {
+                            } catch (ParseException ignored) {
                             }
                         }
                         else if (dueDateStr.isEmpty()) {
@@ -261,9 +263,6 @@ public class Main {
         }
     }
 
-    //method for counting
-    //tasklist.filter(x -> x.isDone()).count()
-
     /**
      * Showing the menu options to the user
      *
@@ -282,16 +281,13 @@ public class Main {
      * Checking if the users date entry is in valid format
      *
      */
-    public static boolean isValidDate (String date){
+    static boolean isValidDate(String date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         try {
             dateFormat.parse(date.trim());
         }
-        catch (ParseException pe) {
-            return false;
-        }
-        catch (NullPointerException pe) {
+        catch (ParseException | NullPointerException pe) {
             return false;
         }
         return true;
@@ -308,7 +304,7 @@ public class Main {
         try {
             System.in.read();
         }
-        catch(Exception e) {
+        catch(Exception ignored) {
         }
     }
 
@@ -317,13 +313,10 @@ public class Main {
      * @param s String type data
      * @return True if the value is int type
      */
-
-    public static boolean isInteger(String s) {
+    static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException nfe) {
-            return false;
-        } catch(NullPointerException npe) {
+        } catch(NumberFormatException | NullPointerException nfe) {
             return false;
         }
         return true;
@@ -334,7 +327,6 @@ public class Main {
      * @param list The ArrayList that is saved it  the file
      * @param fileName The name of the file where the ArrayList( To-do List) is saved
      */
-
     private static void saveToFile(ArrayList list, String fileName) {
         try
         {
@@ -375,5 +367,22 @@ public class Main {
         return list;
     }
 
+     /**
+      * Methods that prints the number of complete or incomplete tasks.
+      * @param completeTasks Number of completed tasks
+      * @param incompleteTasks Number of incomplete tasks
+      */
+     private static void printNoOfCompleteIncompleteTasks(int completeTasks, int incompleteTasks) {
+        System.out.println();
+        if (completeTasks + incompleteTasks != 0) {
+            System.out.println("You have " + incompleteTasks + " incomplete and " + completeTasks + " complete tasks!");
+        }
+        else {
+            System.out.println("To Do List is empty!");
+        }
+        System.out.println();
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println();
+    }
 
 }

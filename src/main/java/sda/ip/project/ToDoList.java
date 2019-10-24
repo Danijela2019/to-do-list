@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 
 
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ public class ToDoList {
      * @param dueDate Due date for that task
      * @param project Name of the project where the created task belong to
      */
+
     public void addTask(String title, Date dueDate, String project) {
         Task newTask = new Task(getNextTaskId(), title, dueDate, project, "Not Done");
         toDoList.add(newTask);
@@ -36,6 +37,7 @@ public class ToDoList {
      *
      * @return Next available ID number
      */
+
     private int getNextTaskId() {
         int nextId = 1;
         for (Task t : toDoList) {
@@ -52,6 +54,7 @@ public class ToDoList {
      * @param taskId ID number of the task
      * @return True if the task exists and is successfully updated as done
      */
+
     public boolean markTaskAsDone(int taskId) {
         Task t = getTaskById(taskId);
         if (t != null) {
@@ -68,6 +71,7 @@ public class ToDoList {
      * @param taskId ID number of the task
      * @return the task that contains that ID number
      */
+
     public Task getTaskById(int taskId) {
         for (Task t : toDoList) {
             if (t.getId() == taskId) {
@@ -82,6 +86,7 @@ public class ToDoList {
      * @param taskId ID number of the task
      * @return True if the task exists in the first place and is successfully removed
      */
+
     public boolean removeTask(int taskId) {
         Task t = getTaskById(taskId);
         if (t != null) {
@@ -97,6 +102,7 @@ public class ToDoList {
      * Prints the task list by project name or date(furthers date on the top/ soonest on the bottom)
      * @param sortChoice Users choice (D)ate or (P)roject
      */
+
     public void printTaskList(String sortChoice) {
         System.out.println("Id|Title|Due Date|Project|Status");
         ArrayList<Task> sortedList = sortList(sortChoice);
@@ -109,16 +115,15 @@ public class ToDoList {
      * Sorts the list by project name or date
      * @param sortChoice Users choice (D)ate or (P)roject
      */
+
     private ArrayList<Task> sortList(String sortChoice) {
         ArrayList<Task> sortedList = new ArrayList<>();
         if (sortChoice.equals("P")) {
-            //toDoList.sort(Comparator.comparing(Task::getProject));
             sortedList = (ArrayList<Task>) toDoList.stream()
                     .sorted(Comparator.comparing(Task::getProject))
                     .collect(Collectors.toList());
         }
         else {
-            //toDoList.sort(Comparator.comparing(Task::getDueDate).reversed());
             sortedList = (ArrayList<Task>) toDoList.stream()
                     .sorted(Comparator.comparing(Task::getDueDate).reversed())
                     .collect(Collectors.toList());
@@ -133,7 +138,8 @@ public class ToDoList {
      * @param dueDate New due date of the task
      * @param project New project of the task
      */
-    public void updateTask(int taskId, String title, Date dueDate, String project) {
+
+    void updateTask(int taskId, String title, Date dueDate, String project) {
         Task t = getTaskById(taskId);
         if (title.isEmpty()) { title = t.getTitle();}
         if (dueDate == null) { dueDate = t.getDueDate();}
@@ -141,5 +147,26 @@ public class ToDoList {
         t.updateTask(title, dueDate, project);
     }
 
+    /**
+     * Calculates the number of complete tasks
+     * @return Number of complete tasks
+     */
+
+    int getNumberOfCompleteTasks() {
+        return (int) toDoList.stream()
+                .filter(t -> t.getStatus().equals("Done"))
+                .count();
+    }
+
+    /**
+     *  Calculates the number of incomplete tasks
+     * @return  Number of incomplete tasks
+     */
+
+    int getNumberOfIncompleteTasks() {
+        return (int) toDoList.stream()
+                .filter(t -> t.getStatus().equals("Not Done"))
+                .count();
+    }
 
 }

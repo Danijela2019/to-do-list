@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.text.DateFormat;
@@ -48,7 +48,20 @@ public class TestToDoList {
 
     }
 
+    @Test
+    public void testGetNumberOfIncompleteTasks() {
+        // Act
+        tdl.addTask("t1", parseStringToDate("2019-12-15"), "p1");
 
+        // Assert
+        assertEquals(1, tdl.getNumberOfIncompleteTasks());
+
+        // Act
+        tdl.removeTask(1);
+
+        // Assert
+        assertFalse(tdl.getNumberOfIncompleteTasks() == 1);
+    }
 
     // creating a method to parse the date when we create new instances
     public Date parseStringToDate(String s) {

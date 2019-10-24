@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
