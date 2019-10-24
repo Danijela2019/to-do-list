@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 
 import org.junit.Before;
 import org.junit.Test;

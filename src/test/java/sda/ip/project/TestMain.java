@@ -1,4 +1,4 @@
-package ipproject;
+package sda.ip.project;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
