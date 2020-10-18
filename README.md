@@ -11,8 +11,7 @@ The basic functionalities of the application are:**
 
 
 
-## Class Diagram
-![Class Diagram](ToDoListClassDiagram.png)
+
 
 ## User Manual     :computer:
 
